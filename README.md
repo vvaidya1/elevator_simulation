@@ -29,8 +29,8 @@ This is a Java-based simulation of a Type 2 elevator system — where passengers
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/elevator-system-strategy.git
-   cd elevator-system-strategy
+   git clone https://github.com/vvaidya1/elevator_simulation.git
+   cd elevator_simulation
 
 2. Place your requests.csv file inside the /data folder
 
