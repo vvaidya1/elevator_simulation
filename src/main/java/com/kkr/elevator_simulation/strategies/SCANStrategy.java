@@ -21,8 +21,12 @@ public class SCANStrategy implements SchedulingStrategy {
                 int currentFloor = elevator.getCurrentFloor();
                 int distance = Math.abs(currentFloor - request.sourceFloor);
 
-                boolean sameDirection = (elevator.getDirection() == Direction.UP && request.sourceFloor >= currentFloor) ||
-                        (elevator.getDirection() == Direction.DOWN && request.sourceFloor <= currentFloor);
+                boolean sameDirection = (elevator.getDirection() == Direction.UP
+                        && request.sourceFloor >= currentFloor
+                        && request.sourceFloor < request.destinationFloor)
+                        || (elevator.getDirection() == Direction.DOWN
+                        && request.sourceFloor <= currentFloor
+                        && request.destinationFloor < request.sourceFloor);
 
                 if ((sameDirection || elevator.isIdle()) && distance < minDistance) {
                     best = elevator;
@@ -40,6 +44,11 @@ public class SCANStrategy implements SchedulingStrategy {
             if (best != null) {
                 request.requestStatus = RequestStatus.ASSIGNED;
                 best.assign(request);
+
+                if (best.isIdle())
+                    best.setDirection((request.sourceFloor > best.getCurrentFloor() || request.destinationFloor > request.sourceFloor)
+                            ? Direction.UP
+                            : Direction.DOWN);
             }
         }
     }

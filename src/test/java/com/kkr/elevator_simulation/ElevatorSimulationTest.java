@@ -1,13 +1,15 @@
 package com.kkr.elevator_simulation;
 
 import com.kkr.elevator_simulation.model.Request;
-import com.kkr.elevator_simulation.strategies.FCFSStrategy;
+import com.kkr.elevator_simulation.strategies.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -73,8 +75,40 @@ public class ElevatorSimulationTest {
         assertTrue(log.length() > 0, "Log file should not be empty");
     }
 
+    @Test
+    public void stressTestLargeRequestVolume() throws IOException {
+        Random rand = new Random(42);
+        List<Request> bulkRequests = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            int time = rand.nextInt(100);
+            int source = rand.nextInt(10) + 1;
+            int dest;
+            do {
+                dest = rand.nextInt(10) + 1;
+            } while (dest == source);
+            bulkRequests.add(new Request(time, "user" + i, source, dest));
+        }
+
+        for (SchedulingStrategy strategy : List.of(new FCFSStrategy(), new NearestCarStrategy(), new LoadBalancingStrategy(), new SCANStrategy())) {
+            List<Request> clonedRequests = cloneRequests(bulkRequests);
+            ElevatorSimulator sim = new ElevatorSimulator(5, 10, 4, strategy, clonedRequests);
+            sim.run();
+
+            long incomplete = clonedRequests.stream().filter(r -> !r.isComplete()).count();
+            assertEquals(0, incomplete, "All requests should be served");
+        }
+    }
+
     @AfterEach
     public void cleanup() {
         new File("elevator_log.csv").delete();
+    }
+
+    private List<Request> cloneRequests(List<Request> original) {
+        List<Request> copy = new ArrayList<>();
+        for (Request r : original) {
+            copy.add(new Request(r.time, r.id, r.sourceFloor, r.destinationFloor));
+        }
+        return copy;
     }
 }

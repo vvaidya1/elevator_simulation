@@ -50,6 +50,9 @@ public class Elevator {
     public Direction getDirection() {
         return direction;
     }
+    public void setDirection(Direction dir) {
+        this.direction = dir;
+    }
 
     public void move(int time) {
         //prioritize existing passengers over new pick-up requests
@@ -62,11 +65,11 @@ public class Elevator {
             pickupPassengers(time);
         } else if (!pickupRequests.isEmpty()) {
             Request next = pickupRequests.peek();
-            moveTo(next.sourceFloor);
-            if (currentFloor == next.sourceFloor && passengers.size() < capacity) {
-                next.pickupTime = time;
-                passengers.add(pickupRequests.poll());
-            }
+            pickupPassengers(time);
+            if (passengers.isEmpty())
+                moveTo(next.sourceFloor);
+            else
+                moveTo(passengers.get(0).destinationFloor);
         } else {
             direction = Direction.IDLE;
         }
