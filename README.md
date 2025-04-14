@@ -32,7 +32,7 @@ This is a Java-based simulation of a Type 2 elevator system — where passengers
    git clone https://github.com/vvaidya1/elevator_simulation.git
    cd elevator_simulation
 
-2. Place your requests.csv file inside the /data folder
+2. Place your requests.csv file inside the /resources folder
 
 3. Compile
    ```bash
