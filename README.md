@@ -72,37 +72,37 @@ Wait Time - Min: 0, Max: 30, Avg: 6.05
 Ride Time - Min: 1, Max: 13, Avg: 5.76
 ```
 
-ElevatorSimulation/
-│
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       ├── com.kkr.elevator_simulation/
-│   │       │   ├── model/
-│   │       │   │    ├── Direction.java
-│   │       │   │    ├── Request.java
-│   │       │   │    ├── RequestStatus.java
-│   │       │   ├── strategies/
-│   │       │   │    ├── ElevatorStrategy.java
-│   │       │   │    ├── FCFSScheduler.java
-│   │       │   │    ├── NearestCarScheduler.java
-│   │       │   │    ├── LoadBalancingScheduler.java
-│   │       │   │    └── SCANScheduler.java
-│   │       │   ├── util/
-│   │       │   │    └── CSVReader.java
-│   │       │   ├── Elevator.java
-│   │       │   ├── ElevatorMain.java
-│   │       │   └── ElevatorSimulator.java
-│   │       └──resources/
-│   │            └── requests.csv
-│   └── test/
-│       └── java/
-│           └── com.kkr.elevator_simulation/
-│               └── ElevatorSimulationTest.java
-├── target/
-│   └── (compiled classes)
-├── pom.xml
-└── README.md
+ElevatorSimulation/\
+│\
+├── src/\
+│   ├── main/\
+│   │   └── java/\
+│   │       ├── com.kkr.elevator_simulation/\
+│   │       │   ├── model/\
+│   │       │   │    ├── Direction.java\
+│   │       │   │    ├── Request.java\
+│   │       │   │    ├── RequestStatus.java\
+│   │       │   ├── strategies/\
+│   │       │   │    ├── ElevatorStrategy.java\
+│   │       │   │    ├── FCFSScheduler.java\
+│   │       │   │    ├── NearestCarScheduler.java\
+│   │       │   │    ├── LoadBalancingScheduler.java\
+│   │       │   │    └── SCANScheduler.java\
+│   │       │   ├── util/\
+│   │       │   │    └── CSVReader.java\
+│   │       │   ├── Elevator.java\
+│   │       │   ├── ElevatorMain.java\
+│   │       │   └── ElevatorSimulator.java\
+│   │       └──resources/\
+│   │            └── requests.csv\
+│   └── test/\
+│       └── java/\
+│           └── com.kkr.elevator_simulation/\
+│               └── ElevatorSimulationTest.java\
+├── target/\
+│   └── (compiled classes)\
+├── pom.xml\
+└── README.md\
 
 ## Assumptions
 - Elevators move 1 floor per time tick
