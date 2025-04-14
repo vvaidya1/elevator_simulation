@@ -34,7 +34,7 @@ This is a Java-based simulation of a Type 2 elevator system — where passengers
 
 2. Place your requests.csv file inside the /data folder
 
-3. **Compile**
+3. Compile
    ```bash
    javac -d target src/**/*.java
 
