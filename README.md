@@ -106,3 +106,6 @@ Ride Time - Min: 1, Max: 13, Avg: 5.76
 - Single request fully complete
 - Elevator direction change
 - Log file creation
+
+## Stress Tests
+- Simulates high-load scenarios with hundreds of passenger requests to evaluate strategy performance under pressure
